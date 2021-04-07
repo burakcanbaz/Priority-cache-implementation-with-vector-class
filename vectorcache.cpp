@@ -26,7 +26,7 @@ class MyFunctionCalculator : public BaseFunctionCalculator{
 	int capacity;
 	int size;
 	int lastSearched;
-	vector<calculatedValues> vectorArray;
+
 
 	int swap(vector<Datas>& vec, unsigned int swapIndex, int n){
 
@@ -34,8 +34,9 @@ class MyFunctionCalculator : public BaseFunctionCalculator{
 			calculatedValues temp = vec[swapIndex-1];
 			vec[swapIndex-1] = vec[swapIndex];
 			vec[swapIndex] = temp;
+			return vec[swapIndex-1].n;
 		}
-		return vec[swapIndex-1].n;
+		return vec[swapIndex].n;
 	}
 
 	int search(int n){
@@ -72,6 +73,8 @@ class MyFunctionCalculator : public BaseFunctionCalculator{
 
 public:
 
+
+	vector<calculatedValues> vectorArray;
 	MyFunctionCalculator(){
 
 		lastSearched = 0;
@@ -143,8 +146,15 @@ int main(){
 
 	MyFunctionCalculator myCalculator;
 
-	myCalculator.setCacheSize(3);
-	myCalculator.calculate(5);
+	myCalculator.setCacheSize(221);
+	for(int i = 0 ; i < 221; i ++){
+		myCalculator.calculate(i);
+		myCalculator.calculate(i*221);
+	}
+	//myCalculator.calculate(3);
+	//myCalculator.calculate(2);
+	std::cout << myCalculator << std::endl;
+	/*myCalculator.calculate(5);
 	myCalculator.calculate(20);
 	myCalculator.calculate(10);
 	myCalculator.calculate(5);
@@ -157,7 +167,7 @@ int main(){
 	std::cout << myCalculator.getCacheElement(0) << std::endl;
 	std::cout << myCalculator.getCacheElement(1) << std::endl;
 	std::cout << myCalculator.getCacheElement(2) << std::endl;
-	std::cout << myCalculator.getCacheElement(3) << std::endl;
+	std::cout << myCalculator.getCacheElement(3) << std::endl;*/
 
 
 }
